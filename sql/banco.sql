@@ -230,6 +230,27 @@ CREATE TABLE `timeline` (
   CONSTRAINT `timeline_ibfk_1` FOREIGN KEY (`processo_id`) REFERENCES `processos` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `orcamentos`
+--
+
+CREATE TABLE `orcamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cliente` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `valor` decimal(15,2) NOT NULL,
+  `descricao_servicos` text DEFAULT NULL,
+  `logo_advogado` varchar(255) DEFAULT NULL,
+  `validade_dias` int(11) DEFAULT 15,
+  `status` enum('pendente','aprovado','rejeitado') DEFAULT 'pendente',
+  `data_criacao` datetime DEFAULT current_timestamp(),
+  `data_aprovacao` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -62,6 +62,11 @@
                     <i class="fas fa-file-invoice-dollar"></i> <span>Honorários</span>
                 </a>
             </li>
+            <li>
+                <a href="<?= BASE_URL ?>pages/orcamentos/index.php">
+                    <i class="fas fa-file-signature"></i> <span>Orçamentos/Propostas</span>
+                </a>
+            </li>
             <?php endif; ?>
             <?php if(tem_permissao('documentos')): ?>
             <li>
