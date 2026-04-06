@@ -1,99 +1,271 @@
-# ⚖️ Advocacia System (LexFlow)
+## ⚖️ LexFlow — Sistema de Gestão Jurídica Inteligente
 
-Um sistema completo, modular e responsivo (PWA) de gerenciamento e workflow jurídico para escritórios de advocacia modernos. O Advocacia System foi desenhado para eliminar processos de papel, automatizar tarefas do dia a dia e fornecer análises vitais (Analytics) sobre a carga horária e honorários da sua equipe de advogados.
+O **LexFlow** é uma plataforma completa de gestão e automação para escritórios de advocacia modernos. Desenvolvido com foco em **produtividade, controle processual e inteligência operacional**, o sistema elimina fluxos manuais, centraliza informações e oferece suporte estratégico à tomada de decisão.
 
----
-
-## 🚀 Principais Funcionalidades
-
-O sistema é construído de forma modular para que administradores deleguem funções aos advogados com flexibilidade:
-
-- **👥 Gestão de Clientes:** Cadastro e base de dados fundamental de todos os envolvidos no escritório.
-- **📂 LexFlow Core (Processos):** Acompanhamento inteligente de processos com Linha do Tempo e "Organização Processual por Etapas" (Checklists processuais). Acesso seguro por *Token* permitindo criação de "Portal do Cliente" sem expor dados internos.
-- **📅 Prazos e Audiências:** Gerenciamento rígido de prazos com cálculo de dias restantes, interface de contagem e botões integrados com o **Google Calendar**.
-- **📋 Kanban de Tarefas:** Um quadro interativo estilo *Drag and Drop* para controle dinâmico da rotina interna do escritório (Pendentes, Em andamento, Concluídos). Crie tarefas que automaticamente geram etapas na ficha do Processo, unificando telas.
-- **☁️ GED (Gestão Eletrônica de Documentos):** Armazenamento seguro de anexos, petições e laudos (.PDF, imagens, Word, Zip) amarrado com clientes e processos. O envio em nuvem integrado pode ser realizado até mesmo enquanto você estipula uma nova tarefa.
-- **💰 Honorários:** Planejamento financeiro inteligente. Aceita pagamentos à vista e o módulo exclusivo de **Parcelamento Automático** — indicando a quantidade, o sistema calcula os vencimentos subsequentes automaticamente. Alerta crítico e visual de honorários vencendo e atrasados na página inicial.
-- **📊 LexFlow Analytics:** Uma camada preditiva na Dashboard da direção, que calcula quem (advogado) está com a pior distribuição de prazos vencidos vs. tarefas e mostra em alerta o nível de "Sobrecarga" da equipe.
-- **🤖 Sugestões e Ações Judiciais (Datajud):** Inteligência que propõe petições com base na classificação da demanda cadastrada.
-- **📱 Progressive Web App (PWA):** Instale o sistema nativamente no celular ou desktop via "Adicionar à Tela Inicial", possibilitando a experiência sem barra de URL como os aplicativos mobile normais.
+> 💡 Ideal para escritórios que desejam escalar operação sem perder controle.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Visão Geral
 
-- **Backend:** PHP Vanilla (Estrutura em arquivos amigáveis e modulares) - PDO para segurança em injeção de dados.
-- **Banco de Dados:** MySQL (Consultas otimizadas e relacionamento firme como chaves estrangeiras com CASCADE).
-- **Frontend:** HTML5, CSS3 dinâmico com Design System minimalista, Javascript.
-- **PWA:** Manifest (`manifest.json`) e Service Worker autônomo para cache estrutural (`sw.js`).
-- **Scripts Externos:** FontAwesome (ícones), SortableJS (movimentação dos quadros de tarefas).
+O LexFlow integra **gestão jurídica, financeira e operacional** em um único ambiente, utilizando uma arquitetura modular e expansível.
+
+Principais objetivos do sistema:
+
+* Reduzir tarefas operacionais repetitivas
+* Centralizar dados jurídicos e administrativos
+* Automatizar fluxos de trabalho
+* Fornecer insights estratégicos (Analytics)
+* Melhorar a comunicação com clientes
 
 ---
 
-## 📁 Estrutura de Diretórios 
+## 🧩 Funcionalidades Principais
 
-```text
-c:\xampp\htdocs\advocacia-system\
-├── assets/          # Ícones PWA, estilos dinâmicos CSS e eventuais imagens estáticas
-├── config/          # Central de conexão com banco de dados (conexao.php)
-├── includes/        # Cabeçalhos, rodapés e envio de e-mails via Mailer
-├── modules/         # Módulos customizáveis (ex: "Assistente" LexFlow Analytics)
-├── pages/           # Todo o núcleo do software interativo da Dashboard
-│   ├── agenda/      # Planejador
-│   ├── audiencias/  # Alertas e agendamentos com tribunal
-│   ├── clientes/    # CRUD de pessoas / empresas
-│   ├── documentos/  # Formulário para upload do GED
-│   ├── honorarios/  # Caixa financeiro de sucumbências e parcelamentos
-│   ├── prazos/      # Gerenciamento de prazo fatal com painel visual
-│   ├── processos/   # Acesso as Linhas de Tempo, visibilidade de Token
-│   ├── tarefas/     # Painel visual dos quadros dinâmicos Kanban
-│   └── usuarios/    # Gestão da equipe (apenas admin)
-├── sql/             # Banco de dados raiz para importação
-├── uploads/         # Repositório de Nuvem de Segurança que guarda os anexos do GED (.PDF, DOCX)
-├── README.md        # Esta documentação
-├── andamento.php    # Acesso restrito para o portão principal do Cliente (acesso via token)
-├── dashboard.php    # Sala de comando e Analytics central pós-login
-└── index.php        # Gatekeeper / Roteador geral
+### 👥 Gestão de Clientes
+
+* Cadastro completo de pessoas físicas e jurídicas
+* Histórico centralizado por cliente
+* Relacionamento direto com processos, documentos e honorários
+
+---
+
+### 📂 Gestão de Processos (LexFlow Core)
+
+* Linha do tempo processual completa
+* Organização por etapas (checklists jurídicos)
+* Controle de movimentações
+* Acesso externo via **token seguro (Portal do Cliente)**
+
+---
+
+### 📅 Prazos e Audiências
+
+* Controle rigoroso de prazos processuais
+* Contagem automática de dias restantes
+* Alertas visuais de urgência
+* Integração com **Google Calendar**
+
+---
+
+### 📋 Kanban de Tarefas
+
+* Gestão visual de tarefas (*Drag and Drop*)
+* Status: Pendentes, Em andamento, Concluídas
+* Integração com processos (tarefas viram etapas automaticamente)
+
+---
+
+### ☁️ GED — Gestão Eletrônica de Documentos
+
+* Upload e armazenamento seguro de arquivos
+* Suporte a múltiplos formatos (PDF, DOCX, imagens, ZIP)
+* Associação com clientes e processos
+* Estrutura organizada para consultas rápidas
+
+---
+
+### 💰 Gestão de Honorários
+
+* Controle financeiro completo
+* Parcelamento automático com cálculo de vencimentos
+* Alertas de inadimplência
+* Visualização consolidada na dashboard
+
+---
+
+### 📊 LexFlow Analytics
+
+* Monitoramento de produtividade da equipe
+* Identificação de sobrecarga operacional
+* Indicadores estratégicos para tomada de decisão
+* Visão gerencial centralizada
+
+---
+
+### 🤖 Inteligência Jurídica (DataJud)
+
+* Sugestão de ações judiciais com base na demanda
+* Apoio na elaboração de petições
+* Integração com dados públicos (DataJud)
+
+---
+
+### 📱 Progressive Web App (PWA)
+
+* Instalação como aplicativo no celular ou desktop
+* Funcionamento offline parcial (cache via Service Worker)
+* Experiência semelhante a apps nativos
+
+---
+
+## 🛠️ Stack Tecnológica
+
+### Backend
+
+* PHP (Vanilla, arquitetura modular)
+* PDO (Proteção contra SQL Injection)
+
+### Banco de Dados
+
+* MySQL / MariaDB
+* Modelagem relacional com integridade referencial (FK + CASCADE)
+
+### Frontend
+
+* HTML5
+* CSS3 (Design System próprio)
+* JavaScript (interações dinâmicas)
+
+### Recursos adicionais
+
+* PWA (manifest + service worker)
+* FontAwesome (ícones)
+* SortableJS (Kanban drag-and-drop)
+
+---
+
+## 📁 Estrutura do Projeto
+
+```bash
+advocacia-system/
+├── assets/        # CSS, ícones PWA, imagens
+├── config/        # Conexão com banco (PDO)
+├── includes/      # Componentes reutilizáveis (header, footer, mailer)
+├── modules/       # Funcionalidades modulares (Analytics, Assistente)
+├── pages/         # Núcleo do sistema
+│   ├── agenda/     # Agenda de compromissos
+│   ├── audiencias/ # Audiências
+│   ├── clientes/   # Clientes
+│   ├── documentos/ # Documentos
+│   ├── honorarios/ # Honorários
+│   ├── prazos/     # Prazos
+│   ├── processos/   # Processos
+│   ├── tarefas/    # Tarefas
+│   └── usuarios/   # Usuários
+├── sql/           # Script do banco de dados
+├── uploads/       # Armazenamento de arquivos
+├── andamento.php  # Portal do cliente (via token)
+├── dashboard.php  # Painel principal
+├── index.php      # Roteador
+└── README.md
 ```
 
 ---
 
-## ⚙️ Instalação e Configuração (Uso Local)
+## ⚙️ Instalação (Ambiente Local)
 
-Siga os passos para rodar o software ambiente Windows com XAMPP, ou equivalente:
+### 🔧 Requisitos
 
-### 1. Requisitos:
-* **PHP >= 7.4** ou superior (testado fluidamente no PHP 8).
-* **MySQL** ou **MariaDB**.
-* Servidor Apache/Nginx (com `mod_rewrite` habilitado no Apache).
-
-### 2. Configurando o Diretório
-1. Clone este repositório ou cole a pasta `advocacia-system` em `C:\xampp\htdocs\`.
-2. O sistema ficará acessível via _http://localhost/advocacia-system/_.
-
-### 3. Banco de Dados
-1. Abra o phpMyAdmin (_http://localhost/phpmyadmin_).
-2. Crie um banco de dados chamado `advocacia_db` (ou similar) formatado em `utf8mb4_general_ci`.
-3. Importe o script nativo contido na pasta em `sql/banco.sql`. Ele criará todas as tabelas, colunas, visões interligadas e regras restritas, além de aplicar o primeiro Administrador oficial.
-
-### 4. Conexão do BD no PHP
-1. Navegue até a pasta `/config/`.
-2. Abra o arquivo `conexao.php` e preencha suas métricas seguras do PDO:
-    - Host (Padrão: `localhost`)
-    - Nome do Banco (Nome escolhido acima)
-    - Usuário (XAMPP padrão: `root`)
-    - Senha (XAMPP padrão: `vazio`)
-
-### 5. Primeiro Acesso
-- O banco de dados já inicializa provendo um usuário oficial de acesso para você testar tudo rapidamente:
-  - **E-mail:** `admin@advocacia.com`
-  - **Senha Criptografada Padrão:** Verificar a hash do arquivo ou utilizar a senha primária estabelecida no momento da criação pela equipe de segurança.
+* PHP 7.4+ (recomendado PHP 8+)
+* MySQL ou MariaDB
+* Apache ou Nginx
 
 ---
 
-## 💡 Customizações Automáticas Destacadas
+### 📌 Passo a Passo
 
-* Se o servidor rejeitar envio de tamanho alto de arquivo nos Honorários/Petições, você talvez necessite checar as travas de `upload_max_filesize` em seu `php.ini`.
-* Recomenda-se para instalação num Servidor Hospedado real o uso de um protocolo HTTPS rigoroso. Certificados SSL ativam em paralelo a viabilidade da manifestação e ativadores do nosso aplicativo PWA.
+#### 1. Clonar ou copiar projeto
 
-*(Desenvolvido originalmente para otimização jurídica e fluxo digital.)*
+```bash
+C:\xampp\htdocs\advocacia-system
+```
+
+Acesse:
+
+```
+http://localhost/advocacia-system/
+```
+
+---
+
+#### 2. Banco de Dados
+
+1. Acesse o phpMyAdmin
+2. Crie o banco:
+
+```
+advocacia_db
+```
+
+3. Importe:
+
+```
+/sql/banco.sql
+```
+
+---
+
+#### 3. Configuração de conexão
+
+Arquivo:
+
+```
+/config/conexao.php
+```
+
+Exemplo:
+
+```php
+$host = 'localhost';
+$db   = 'advocacia_db';
+$user = 'root';
+$pass = '';
+```
+
+---
+
+#### 4. Acesso inicial
+
+* Email: `admin@advocacia.com`
+* Senha: definida no banco (ver hash ou redefinir)
+
+---
+
+## 🔐 Segurança
+
+* Uso de PDO com prepared statements
+* Controle de acesso por usuário
+* Tokens seguros para acesso externo
+* Recomendado uso de HTTPS em produção
+
+---
+
+## ⚠️ Observações Técnicas
+
+* Ajustar `upload_max_filesize` no `php.ini` para uploads maiores
+* Ativar `mod_rewrite` (Apache)
+* Configurar SSL em ambiente produtivo para funcionamento completo do PWA
+
+---
+
+## 📈 Possíveis Evoluções
+
+* Integração completa com tribunais (eproc, PJe, etc.)
+* Sistema de notificações em tempo real
+* API REST para integração externa
+* Aplicativo mobile nativo
+* IA para análise preditiva de processos
+
+---
+
+## 📄 Licença
+
+Projeto de uso educacional/comercial sob análise. Definir licença conforme estratégia de distribuição.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Éder Rosso**
+🔗 GitHub: [https://github.com/EderRosso](https://github.com/EderRosso)
+
+---
+
+## ⭐ Diferencial do Projeto
+
+O LexFlow não é apenas um sistema jurídico — é uma **plataforma de gestão estratégica**, focada em transformar escritórios tradicionais em operações digitais eficientes.
+
+---
+
+
