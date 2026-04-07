@@ -11,6 +11,7 @@ try {
     $total_documentos = $pdo->query("SELECT COUNT(*) FROM documentos")->fetchColumn();
     $total_usuarios = $pdo->query("SELECT COUNT(*) FROM usuarios WHERE status = 'ativo'")->fetchColumn();
     $honorarios_pendentes = $pdo->query("SELECT COALESCE(SUM(valor), 0) FROM honorarios WHERE status = 'pendente'")->fetchColumn();
+    $orcamentos_pendentes = $pdo->query("SELECT COUNT(*) FROM orcamentos WHERE status = 'pendente'")->fetchColumn();
     
     // Audiências próximas (próximos 30 dias)
     $stmt_audi = $pdo->prepare("SELECT a.data_audiencia, a.hora_audiencia, a.local_audiencia, c.nome, p.numero_processo 
@@ -108,7 +109,20 @@ try {
     </a>
     <?php endif; ?>
 
-    <!-- Card 4 -->
+    <!-- Card 4 (Orçamentos) -->
+    <?php if (tem_permissao('honorarios')): ?>
+    <a href="pages/orcamentos/index.php" class="card card-stats card-link">
+        <div class="card-icon" style="background-color: #1F6E8C;">
+            <i class="fas fa-file-signature" style="color:#fff;"></i>
+        </div>
+        <div class="card-info">
+            <p class="text-muted">Propostas Pendentes</p>
+            <h3><?php echo number_format($orcamentos_pendentes, 0, ',', '.'); ?></h3>
+        </div>
+    </a>
+    <?php endif; ?>
+
+    <!-- Card 5 -->
     <?php if (tem_permissao('prazos') || tem_permissao('audiencias')): ?>
     <a href="pages/prazos/index.php" class="card card-stats card-link">
         <div class="card-icon red-bg">

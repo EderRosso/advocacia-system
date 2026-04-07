@@ -1,21 +1,16 @@
 <?php
 require_once __DIR__ . '/../../config/conexao.php';
 
-if (!isset($_GET['id'])) {
-    die("Acesso inválido.");
-}
+if (!isset($_GET['id'])) { die("Acesso inválido."); }
 
 $id = (int)$_GET['id'];
-$stmt = $pdo->prepare("SELECT o.*, c.nome, c.email, c.telefone, c.cpf_cnpj, c.endereco, c.cidade, c.estado 
+$stmt = $pdo->prepare("SELECT o.*, c.nome, c.email, c.telefone, c.cpf, c.endereco, c.cidade, c.estado 
                       FROM orcamentos o 
                       JOIN clientes c ON o.id_cliente = c.id 
                       WHERE o.id = ?");
 $stmt->execute([$id]);
 $orc = $stmt->fetch();
-
-if (!$orc) {
-    die("Orçamento não encontrado.");
-}
+if (!$orc) { die("Orçamento não encontrado."); }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -23,218 +18,144 @@ if (!$orc) {
     <meta charset="UTF-8">
     <title>Proposta Comercial - <?php echo htmlspecialchars($orc['titulo']); ?></title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px;
-            background: #f4f6f8;
-        }
-        .invoice-box {
+        body { font-family: 'Inter', sans-serif; color: #111; line-height: 1.6; margin: 0; padding: 40px; background: #eaebed; }
+        
+        .page-border {
             max-width: 800px;
             margin: auto;
-            padding: 50px;
-            border: 1px solid #eee;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            font-size: 14px;
+            border: 6px solid #000;
+            padding: 40px 50px;
             background: #fff;
+            min-height: 1050px;
+            box-sizing: border-box;
+            position: relative;
         }
+
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 2px solid #0D8ABC;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .header img {
-            max-height: 80px;
-            max-width: 250px;
+            max-height: 120px;
+            max-width: 200px;
+            object-fit: contain;
         }
-        .header .no-logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0D8ABC;
-            text-transform: uppercase;
+        .no-logo-text { font-size: 14px; font-weight: bold; color: #555; text-transform: uppercase; width: 200px; text-align: center;}
+
+        .client-info {
+            font-size: 15px; margin-bottom: 30px;
         }
-        .header-right {
-            text-align: right;
-            font-size: 13px;
-            color: #666;
-        }
-        .title {
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .client-info span { font-weight: 700; color: #000; display: block; margin-bottom: 10px; }
+
+        .service-content {
+            font-size: 14px;
             color: #222;
-        }
-        .info-grid {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            background: #fcfcfc;
-            padding: 20px;
-            border-left: 4px solid #0D8ABC;
-        }
-        .info-block strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #444;
-        }
-        .content {
-            margin-bottom: 40px;
-            font-size: 15px;
-            text-align: justify;
-        }
-        .content-box {
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-height: 150px;
-            white-space: pre-wrap;
-        }
-        .pricing {
-            margin-top: 40px;
-            border-top: 2px solid #eee;
-            padding-top: 20px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .pricing-box {
-            background: #f1f8ff;
-            padding: 20px 40px;
-            text-align: right;
-            border-radius: 4px;
-            border: 1px solid #cce5ff;
-        }
-        .pricing-box span {
-            display: block;
-            font-size: 13px;
-            color: #666;
-        }
-        .pricing-box h2 {
-            margin: 5px 0 0 0;
-            color: #0D8ABC;
-        }
-        .footer {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 12px;
-            color: #999;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        .signature {
-            margin-top: 80px;
-            display: flex;
-            justify-content: space-around;
-        }
-        .signature-line {
-            width: 250px;
-            border-top: 1px solid #333;
-            text-align: center;
-            padding-top: 10px;
-            font-weight: 600;
+            margin-bottom: 50px;
         }
         
+        /* Ajustes baseados na injeção do HTML do CKEditor para visual PDF */
+        .service-content ul, .service-content ol { padding-left: 20px; }
+        .service-content p { margin-bottom: 10px; }
+
+        .bottom-info { font-size: 14px; margin-top: 50px; margin-bottom: 80px; font-weight: 400; }
+        .validade { font-weight: 700; margin-top: 25px; text-transform: uppercase; }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+        .sign-block { text-align: center; font-size: 14px; font-weight: 700; width: 45%; }
+        .sign-line { border-bottom: 1px solid #000; margin-bottom: 10px; }
+        
         @media print {
-            body { background: #fff; padding: 0; }
-            .invoice-box { box-shadow: none; border: none; padding: 0; }
+            body { background: transparent; padding: 0; }
+            .page-border { box-shadow: none; min-height: 100vh; border: 6px solid #000; }
             .print-btn { display: none !important; }
         }
         
         .print-btn {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 12px;
-            text-align: center;
-            background: #0D8ABC;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
+            display: block; width: 220px; margin: 0 auto 30px auto; padding: 12px; text-align: center;
+            background: #28a745; color: #fff; border-radius: 4px; font-weight: bold; cursor: pointer; border: none; font-size: 16px;
         }
-        .print-btn:hover {
-            background: #09688d;
-        }
+        .print-btn:hover { background: #218838; }
     </style>
 </head>
 <body>
 
-    <button onclick="window.print()" class="print-btn">🖨️ IMPRIMIR / SALVAR PDF</button>
+    <button onclick="window.print()" class="print-btn"><i class="fas fa-print"></i> IMPRIMIR / SALVAR PDF</button>
 
-    <div class="invoice-box">
-        <div class="header">
-            <div>
-                <?php if(!empty($orc['logo_advogado']) && file_exists(__DIR__ . '/../../' . $orc['logo_advogado'])): ?>
-                    <img src="../../<?php echo htmlspecialchars($orc['logo_advogado']); ?>" alt="Logo Advogado">
-                <?php else: ?>
-                    <div class="no-logo">ADVOCACIA & CONSULTORIA</div>
-                <?php endif; ?>
-            </div>
-            <div class="header-right">
-                <strong>Data da Emissão:</strong> <?php echo date('d/m/Y', strtotime($orc['data_criacao'])); ?><br>
-                <strong>Proposta Nº:</strong> <?php echo str_pad($orc['id'], 5, '0', STR_PAD_LEFT); ?><br>
-                <strong>Validade:</strong> <?php echo $orc['validade_dias']; ?> dias
+    <div class="page-border">
+        
+        <!-- Header Logos -->
+        <?php
+        $tem_logo1 = !empty($orc['logo_1']) && file_exists(__DIR__ . '/../../' . $orc['logo_1']);
+        $tem_logo2 = !empty($orc['logo_2']) && file_exists(__DIR__ . '/../../' . $orc['logo_2']);
+        $justificativa = ($tem_logo1 && $tem_logo2) ? 'space-between' : 'center';
+        ?>
+        <div class="header" style="justify-content: <?php echo $justificativa; ?>;">
+            <?php if($tem_logo1): ?>
+                <div><img src="../../<?php echo htmlspecialchars($orc['logo_1']); ?>" alt="Logo 1"></div>
+            <?php endif; ?>
+            
+            <?php if($tem_logo2): ?>
+                <div><img src="../../<?php echo htmlspecialchars($orc['logo_2']); ?>" alt="Logo 2"></div>
+            <?php endif; ?>
+            
+            <?php if(!$tem_logo1 && !$tem_logo2): ?>
+                <div><div class="no-logo-text">[Espaço para Logo]</div></div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Dados Iniciais -->
+        <div class="client-info">
+            <span>Cliente: <?php echo htmlspecialchars($orc['nome']); ?></span>
+            <span>Atendimento: <?php echo date('d/m/Y', strtotime($orc['data_criacao'])); ?></span>
+        </div>
+
+        <!-- Descrição Central Livre (Editor HTML) -->
+        <div class="service-content"><?php echo $orc['descricao_servicos']; ?></div>
+
+        <!-- Rodapé Local/Validade -->
+        <div class="bottom-info">
+            Sapucaia do Sul, <?php echo date('d', strtotime($orc['data_criacao'])); ?> de <?php 
+                $meses = ['01'=>'janeiro','02'=>'fevereiro','03'=>'março','04'=>'abril','05'=>'maio','06'=>'junho','07'=>'julho','08'=>'agosto','09'=>'setembro','10'=>'outubro','11'=>'novembro','12'=>'dezembro'];
+                echo $meses[date('m', strtotime($orc['data_criacao']))]; 
+            ?> de <?php echo date('Y', strtotime($orc['data_criacao'])); ?>.
+            
+            <div class="validade">
+                VALIDADE DA PROPOSTA <?php echo (int)$orc['validade_dias']; ?> DIAS CORRIDOS.
             </div>
         </div>
 
-        <div class="title">
-            <?php echo htmlspecialchars($orc['titulo']); ?>
+        <!-- Linhas de Assinatura -->
+        <?php
+        $tem_ass1 = !empty(trim($orc['assinatura_1_nome']));
+        $tem_ass2 = !empty(trim($orc['assinatura_2_nome']));
+        $just_ass = ($tem_ass1 && $tem_ass2) ? 'space-between' : 'center';
+        ?>
+        <div class="signatures" style="justify-content: <?php echo $just_ass; ?>;">
+            <?php if($tem_ass1): ?>
+            <div class="sign-block" <?php if(!$tem_ass2 && $tem_ass1) echo 'style="width: 60%;"'; ?>>
+                <div class="sign-line"></div>
+                <?php echo htmlspecialchars($orc['assinatura_1_nome']); ?><br>
+                <?php echo htmlspecialchars($orc['assinatura_1_oab']); ?>
+            </div>
+            <?php endif; ?>
+            
+            <?php if($tem_ass2): ?>
+            <div class="sign-block" <?php if(!$tem_ass1 && $tem_ass2) echo 'style="width: 60%;"'; ?>>
+                <div class="sign-line"></div>
+                <?php echo htmlspecialchars($orc['assinatura_2_nome']); ?><br>
+                <?php echo htmlspecialchars($orc['assinatura_2_oab']); ?>
+            </div>
+            <?php endif; ?>
         </div>
 
-        <div class="info-grid">
-            <div class="info-block">
-                <strong>Apresentado à:</strong>
-                <?php echo htmlspecialchars($orc['nome']); ?><br>
-                CNPJ/CPF: <?php echo htmlspecialchars($orc['cpf_cnpj']); ?><br>
-                E-mail: <?php echo htmlspecialchars($orc['email']); ?><br>
-                Telefone: <?php echo htmlspecialchars($orc['telefone']); ?>
-            </div>
-            <div class="info-block" style="text-align: right;">
-                <strong>Endereço do Cliente:</strong>
-                <?php echo htmlspecialchars($orc['endereco']); ?><br>
-                <?php echo htmlspecialchars($orc['cidade'] . ' - ' . $orc['estado']); ?>
-            </div>
-        </div>
-
-        <div class="content">
-            <h3 style="color: #0D8ABC; margin-bottom: 10px;">Escopo dos Serviços</h3>
-            <div class="content-box">
-<?php echo htmlspecialchars($orc['descricao_servicos']); ?>
-            </div>
-        </div>
-
-        <div class="pricing">
-            <div class="pricing-box">
-                <span>Investimento Total (Honorários)</span>
-                <h2>R$ <?php echo number_format($orc['valor'], 2, ',', '.'); ?></h2>
-            </div>
-        </div>
-
-        <div class="signature">
-            <div class="signature-line">
-                De Cordo (Assinatura do Cliente)
-            </div>
-            <div class="signature-line">
-                Advogado / Escritório
-            </div>
-        </div>
-
-        <div class="footer">
-            Este documento é estritamente confidencial e seu conteúdo tem validade de <?php echo $orc['validade_dias']; ?> dias a partir de sua emissão.<br>
-            A prestação do serviço condiciona-se à assinatura de Contrato de Honorários formal.
-        </div>
     </div>
 
 </body>

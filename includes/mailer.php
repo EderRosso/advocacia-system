@@ -115,4 +115,50 @@ function enviar_email_link_rastreio($para_email, $para_nome, $numero_processo, $
         return "E-mail não pode ser enviado. Erro do Servidor: {$mail->ErrorInfo}";
     }
 }
+
+function enviar_email_orcamento($para_email, $para_nome, $titulo_orcamento, $link_orcamento)
+{
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'contatoadvsystem@gmail.com';
+        $mail->Password = 'cfvijrxkrgrmmdek';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
+
+        // Remetente e Destinatário
+        $mail->setFrom($mail->Username, 'Equipe Jurídica - Proposta Comercial');
+        $mail->addAddress($para_email, $para_nome);
+
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = 'Sua Proposta Comercial: ' . $titulo_orcamento;
+
+        $body = "
+        <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;'>
+            <h2 style='color: #0E2954; border-bottom: 2px solid #0E2954; padding-bottom: 10px;'>Olá, {$para_nome}!</h2>
+            <p>É com satisfação que enviamos a nossa proposta comercial: <strong>{$titulo_orcamento}</strong>.</p>
+            <p>Preparamos um documento exclusivo com todos os detalhes do escopo de serviço, condições e honorários.</p>
+            <div style='background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #D4AF37;'>
+                <p style='margin: 0;'>Para visualizar a proposta de forma interativa ou gerar/imprimir o PDF, acesse o link abaixo:</p>
+            </div>
+            <p style='text-align: center; margin-top: 30px;'>
+                <a href='{$link_orcamento}' style='background: #1F6E8C; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 5px; font-weight: bold; display: inline-block;'>Visualizar Proposta / PDF</a>
+            </p>
+            <br>
+            <p style='font-size: 12px; color: #888;'><em>Caso tenha dúvidas, não hesite em nos contatar respondendo este e-mail.</em></p>
+        </div>
+        ";
+
+        $mail->Body = $body;
+        $mail->send();
+        return true;
+    }
+    catch (Exception $e) {
+        return "E-mail não pode ser enviado. Erro do Servidor: {$mail->ErrorInfo}";
+    }
+}
 ?>
