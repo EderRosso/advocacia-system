@@ -8,10 +8,12 @@ verifica_login();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advocacia System</title>
-    <!-- PWA -->
+    <!-- PWA e Ícones Mobile -->
     <link rel="manifest" href="<?= BASE_URL ?>manifest.php">
     <meta name="theme-color" content="#0D8ABC">
-    <link rel="apple-touch-icon" href="<?= BASE_URL ?>assets/img/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?= BASE_URL ?>assets/img/icon-192x192.png">
+    <!-- Fim PWA -->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
