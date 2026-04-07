@@ -38,6 +38,11 @@
 
 [data-theme="dark"] .table th {
     background-color: #252525;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .table td::before {
+    color: #ffffff;
 }
 
 [data-theme="dark"] .table tr:hover {
