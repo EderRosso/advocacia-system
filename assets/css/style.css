@@ -41,12 +41,29 @@
     color: #ffffff;
 }
 
-[data-theme="dark"] .table td::before {
+[data-theme="dark"] .table td::before,
+[data-theme="dark"] .filter-title,
+[data-theme="dark"] .filter-label,
+[data-theme="dark"] .form-group label {
     color: #ffffff;
 }
 
 [data-theme="dark"] .table tr:hover {
     background-color: rgba(255, 255, 255, 0.04);
+}
+
+.filter-title {
+    margin: 0; 
+    font-size: 18px; 
+    color: var(--primary-color);
+}
+
+.filter-label {
+    font-size: 12px; 
+    font-weight: 600; 
+    color: #555555; 
+    display: block; 
+    margin-bottom: 5px;
 }
 
 [data-theme="dark"] .sidebar {
@@ -691,6 +708,12 @@ textarea.form-control {
 .kanban-body {
     padding: 10px;
     min-height: 200px;
+}
+
+/* Override para o CKEditor - Forçar fundo branco e letras pretas mesmo no Dark Mode */
+.ck-editor__editable, .ck-content {
+    color: #333333 !important;
+    background-color: #ffffff !important;
 }
 .kanban-card {
     background: #fff;

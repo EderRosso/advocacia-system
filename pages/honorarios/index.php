@@ -42,7 +42,7 @@ try {
 ?>
 <div class="page-header" style="flex-direction: column; align-items: stretch; gap: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h3 style="margin: 0; font-size: 18px; color: var(--primary-color);">Filtro de Honorários</h3>
+        <h3 class="filter-title">Filtro de Honorários</h3>
         <a href="form.php" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Honorário</a>
     </div>
     
@@ -50,15 +50,15 @@ try {
         <div class="panel-body" style="padding: 15px;">
             <form action="" method="GET" class="search-bar" style="margin: 0; flex-wrap: wrap; align-items: flex-end;">
                 <div style="flex: 1; min-width: 200px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #555; display:block; margin-bottom: 5px;">Buscar por texto:</label>
+                    <label class="filter-label">Buscar por texto:</label>
                     <input type="text" name="busca" class="form-control" placeholder="Cliente, tipo, status..." value="<?php echo htmlspecialchars($busca); ?>" style="width: 100%;">
                 </div>
                 <div style="width: 160px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #555; display:block; margin-bottom: 5px;">Data Inicial:</label>
+                    <label class="filter-label">Data Inicial:</label>
                     <input type="date" name="data_inicio" class="form-control" value="<?php echo htmlspecialchars($data_inicio); ?>" style="width: 100%;">
                 </div>
                 <div style="width: 160px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #555; display:block; margin-bottom: 5px;">Data Final:</label>
+                    <label class="filter-label">Data Final:</label>
                     <input type="date" name="data_fim" class="form-control" value="<?php echo htmlspecialchars($data_fim); ?>" style="width: 100%;">
                 </div>
                 <button type="submit" class="btn btn-blue" style="height: 45px;"><i class="fas fa-search"></i> Filtrar</button>
