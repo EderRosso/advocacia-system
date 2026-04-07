@@ -86,7 +86,7 @@ if ($id) { $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?"); $stmt->
                     <label>Permissões Específicas (quais módulos ele pode ver e editar)</label>
                     <div style="display:flex; flex-wrap:wrap; gap:15px; margin-top:10px; background:#f9f9f9; padding:15px; border-radius:5px; border:1px solid #ddd;">
                         <?php foreach($modulos as $chave => $nome_modulo): ?>
-                            <label style="font-weight:normal; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                            <label style="font-weight:normal; display:flex; align-items:center; gap:5px; cursor:pointer; color: #333333 !important;">
                                 <input type="checkbox" name="acessos[]" value="<?php echo $chave; ?>" <?php echo in_array($chave, $acessos_usuario) ? 'checked' : ''; ?>>
                                 <?php echo $nome_modulo; ?>
                             </label>
