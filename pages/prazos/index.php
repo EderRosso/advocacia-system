@@ -75,7 +75,7 @@ try {
                             ?>
                             <a href="<?php echo $link_google; ?>" target="_blank" class="btn btn-sm" style="background-color: #4285F4; color: white;" title="Adicionar ao Google Agenda"><i class="fab fa-google"></i></a>
                             <a href="form.php?id=<?php echo $pr['id']; ?>" class="btn btn-sm btn-blue"><i class="fas fa-edit"></i></a>
-                            <a href="delete.php?id=<?php echo $pr['id']; ?>" class="btn btn-sm btn-red" onclick="return confirm('Excluir prazo?');"><i class="fas fa-trash"></i></a>
+                            <a href="delete.php?id=<?php echo $pr['id']; ?>" class="btn btn-sm btn-red" onclick="return confirmDialog(event, this.href, 'Excluir prazo?');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

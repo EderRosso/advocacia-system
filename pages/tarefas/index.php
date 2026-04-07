@@ -95,9 +95,9 @@ try {
                         <i class="fas fa-calendar-alt"></i> <?php echo $t['data_final'] ? date('d/m/Y', strtotime($t['data_final'])) : 'Sem prazo'; ?>
                     </div>
                     <div class="k-actions">
-                        <a href="arquivar.php?id=<?php echo $t['id']; ?>" class="text-gray" title="Arquivar Tarefa" onclick="return confirm('Mover para o Arquivo Morto? Nenhuma informação será perdida.');" style="color: #7f8c8d; margin-right:5px;"><i class="fas fa-box-open"></i></a>
+                        <a href="arquivar.php?id=<?php echo $t['id']; ?>" class="text-gray" title="Arquivar Tarefa" onclick="return confirmDialog(event, this.href, 'Mover para o Arquivo Morto? Nenhuma informação será perdida.');" style="color: #7f8c8d; margin-right:5px;"><i class="fas fa-box-open"></i></a>
                         <a href="form.php?id=<?php echo $t['id']; ?>" title="Editar"><i class="fas fa-edit"></i></a>
-                        <a href="delete.php?id=<?php echo $t['id']; ?>" class="text-red" title="Excluir" onclick="return confirm('Excluir tarefa permanentemente?');"><i class="fas fa-trash"></i></a>
+                        <a href="delete.php?id=<?php echo $t['id']; ?>" class="text-red" title="Excluir" onclick="return confirmDialog(event, this.href, 'Excluir tarefa permanentemente?');"><i class="fas fa-trash"></i></a>
                     </div>
                 </div>
             <?php endforeach; ?>

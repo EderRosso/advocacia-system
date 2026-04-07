@@ -35,7 +35,7 @@ try {
                         <td><div style="width: 25px; height: 25px; background-color: <?php echo htmlspecialchars($q['cor']); ?>; border-radius: 4px; border: 1px solid #ccc;"></div></td>
                         <td class="btn-actions">
                             <a href="quadro_form.php?id=<?php echo $q['id']; ?>" class="btn btn-sm btn-blue"><i class="fas fa-edit"></i></a>
-                            <a href="quadro_delete.php?id=<?php echo $q['id']; ?>" class="btn btn-sm btn-red" onclick="return confirm('ATENÇÃO: Excluir esta coluna apagará todas as tarefas vinculadas a ela! Tem certeza disso?');"><i class="fas fa-trash"></i></a>
+                            <a href="quadro_delete.php?id=<?php echo $q['id']; ?>" class="btn btn-sm btn-red" onclick="return confirmDialog(event, this.href, 'ATENÇÃO: Excluir esta coluna apagará todas as tarefas vinculadas a ela! Tem certeza disso?');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

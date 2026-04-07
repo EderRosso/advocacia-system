@@ -73,7 +73,7 @@ try {
         </div>
         <div class="card-info">
             <p class="text-muted">Total Clientes</p>
-            <h3><?php echo number_format($total_clientes, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $total_clientes; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -86,7 +86,7 @@ try {
         </div>
         <div class="card-info">
             <p class="text-muted">Processos Ativos</p>
-            <h3><?php echo number_format($total_processos, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $total_processos; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -117,7 +117,7 @@ try {
         </div>
         <div class="card-info">
             <p class="text-muted">Propostas Pendentes</p>
-            <h3><?php echo number_format($orcamentos_pendentes, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $orcamentos_pendentes; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -130,7 +130,7 @@ try {
         </div>
         <div class="card-info">
              <p class="text-muted">Prazos e Audiências</p>
-            <h3><?php echo count($audiencias_prox) + count($prazos_prox); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo count($audiencias_prox) + count($prazos_prox); ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -143,7 +143,7 @@ try {
         </div>
         <div class="card-info">
              <p class="text-muted">Tarefas Ativas</p>
-            <h3><?php echo number_format($total_tarefas, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $total_tarefas; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -156,7 +156,7 @@ try {
         </div>
         <div class="card-info">
              <p class="text-muted">Documentos Guardados</p>
-            <h3><?php echo number_format($total_documentos, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $total_documentos; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -169,7 +169,7 @@ try {
         </div>
         <div class="card-info">
              <p class="text-muted">Usuários Ativos</p>
-            <h3><?php echo number_format($total_usuarios, 0, ',', '.'); ?></h3>
+            <h3 class="animate-number" data-target="<?php echo $total_usuarios; ?>">0</h3>
         </div>
     </a>
     <?php endif; ?>
@@ -312,7 +312,7 @@ try {
                 </tbody>
             </table>
             <div style="text-align: right; padding-top: 10px;">
-                <a href="pages/honorarios/index.php" style="font-size: 12px; color: var(--primary-color); text-decoration: none; font-weight: 600;">Ver todos os Honorários <i class="fas fa-arrow-right"></i></a>
+                <a href="pages/honorarios/index.php" class="link-honorarios">Ver todos os Honorários <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

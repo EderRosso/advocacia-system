@@ -20,6 +20,14 @@ verifica_login();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css?v=<?php echo time(); ?>">
+    
+    <!-- SweetAlert2 & Tema Global -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Aplica o tema dark do localStorage antes da página renderizar (Evita Flash Branco)
+        const savedTheme = localStorage.getItem('advTheme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
     <div class="layout-wrapper">
@@ -36,7 +44,10 @@ verifica_login();
                     </button>
                     <h2><?php echo isset($page_title) ? htmlspecialchars($page_title) : 'Dashboard'; ?></h2>
                 </div>
-                <div class="header-right">
+                <div class="header-right" style="display:flex; align-items:center; gap: 20px;">
+                    <button id="themeToggleBtn" style="background:transparent; border:none; cursor:pointer; font-size:18px; color:var(--text-color);" title="Modo Noturno">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
                     <div class="user-info">
                         <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($_SESSION['usuario_nome']); ?>&background=0D8ABC&color=fff" alt="Avatar" class="avatar">
                         <span class="user-name"><?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></span>

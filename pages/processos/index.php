@@ -71,7 +71,7 @@ try {
                         <td class="btn-actions">
                             <a href="view.php?id=<?php echo $proc['id']; ?>&tab=lexflow" class="btn btn-sm btn-green" title="Assistente Jurídico"><i class="fas fa-robot"></i></a>
                             <a href="form.php?id=<?php echo $proc['id']; ?>" class="btn btn-sm btn-blue" title="Editar"><i class="fas fa-edit"></i></a>
-                            <a href="delete.php?id=<?php echo $proc['id']; ?>" class="btn btn-sm btn-red" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o processo?');"><i class="fas fa-trash"></i></a>
+                            <a href="delete.php?id=<?php echo $proc['id']; ?>" class="btn btn-sm btn-red" title="Excluir" onclick="return confirmDialog(event, this.href, 'Tem certeza que deseja excluir o processo?');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

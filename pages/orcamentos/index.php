@@ -149,7 +149,7 @@ $orcamentos = $stmt->fetchAll();
                                 <div style="display: flex; gap: 2px; background: #f0f2f5; padding: 3px; border-radius: 6px; border: 1px solid #dce0e4;">
                                     <span style="font-size: 10px; color: #6c757d; font-weight: 600; padding: 0 4px; display: flex; align-items: center; border-right: 1px solid #dce0e4; margin-right: 2px;">ENVIAR</span>
                                     <a href="<?php echo htmlspecialchars($whatsapp_link); ?>" target="_blank" class="btn btn-sm" style="background:#25D366; color:white; padding: 5px 8px;" title="Enviar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                                    <a href="index.php?enviar_email=1&id=<?php echo $o['id']; ?>" class="btn btn-sm" style="background:#f39c12; color:white; padding: 5px 8px;" title="Enviar por E-mail" onclick="return confirm('Deseja enviar a proposta por e-mail para <?php echo htmlspecialchars($o['cliente_email'] ?? 'cliente sem e-mail'); ?>?');"><i class="fas fa-envelope"></i></a>
+                                    <a href="index.php?enviar_email=1&id=<?php echo $o['id']; ?>" class="btn btn-sm" style="background:#f39c12; color:white; padding: 5px 8px;" title="Enviar por E-mail" onclick="return confirmDialog(event, this.href, 'Deseja enviar a proposta por e-mail para <?php echo htmlspecialchars($o['cliente_email'] ?? 'cliente sem e-mail'); ?>?');"><i class="fas fa-envelope"></i></a>
                                     <a href="imprimir.php?id=<?php echo $o['id']; ?>" target="_blank" class="btn btn-sm" style="background:#6c757d; color:white; padding: 5px 8px;" title="Imprimir / PDF"><i class="fas fa-print"></i></a>
                                 </div>
 
@@ -164,7 +164,7 @@ $orcamentos = $stmt->fetchAll();
                                 <!-- Bloco Gestão (Editar/Excluir) -->
                                 <div style="display: flex; gap: 2px; background: #f0f2f5; padding: 3px; border-radius: 6px; border: 1px solid #dce0e4;">
                                     <a href="form.php?id=<?php echo $o['id']; ?>" class="btn btn-sm" style="background:#1F6E8C; color:white; padding: 5px 8px;" title="Editar"><i class="fas fa-edit"></i></a>
-                                    <a href="index.php?delete=<?php echo $o['id']; ?>" onclick="return confirm('Excluir este orçamento permanentemente?');" class="btn btn-sm" style="background:#cc0000; color:white; padding: 5px 8px;" title="Excluir"><i class="fas fa-trash"></i></a>
+                                    <a href="index.php?delete=<?php echo $o['id']; ?>" onclick="return confirmDialog(event, this.href, 'Excluir este orçamento permanentemente?');" class="btn btn-sm" style="background:#cc0000; color:white; padding: 5px 8px;" title="Excluir"><i class="fas fa-trash"></i></a>
                                 </div>
                                 
                             </div>

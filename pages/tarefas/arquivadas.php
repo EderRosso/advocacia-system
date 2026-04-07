@@ -57,8 +57,8 @@ try {
                             ?>
                         </td>
                         <td class="btn-actions">
-                            <a href="desarquivar.php?id=<?php echo $t['id']; ?>" class="btn btn-sm btn-green" title="Mover de volta para o Kanban" onclick="return confirm('Mover tarefa de volta para o Kanban de rotina do escritório?');"><i class="fas fa-box-open"></i> Restaurar</a>
-                            <a href="delete.php?id=<?php echo $t['id']; ?>" class="btn btn-sm btn-red" title="Excluir Definitivamente do Sistema" onclick="return confirm('Excluir do código fonte permanentemente? NENHUMA linha de banco de dados poderá recupar isso.');"><i class="fas fa-trash"></i></a>
+                            <a href="desarquivar.php?id=<?php echo $t['id']; ?>" class="btn btn-sm btn-green" title="Mover de volta para o Kanban" onclick="return confirmDialog(event, this.href, 'Mover tarefa de volta para o Kanban de rotina do escritório?');"><i class="fas fa-box-open"></i> Restaurar</a>
+                            <a href="delete.php?id=<?php echo $t['id']; ?>" class="btn btn-sm btn-red" title="Excluir Definitivamente do Sistema" onclick="return confirmDialog(event, this.href, 'Excluir do código fonte permanentemente? NENHUMA linha de banco de dados poderá recupar isso.');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

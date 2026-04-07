@@ -97,7 +97,7 @@ try {
                         </td>
                         <td class="btn-actions">
                             <a href="form.php?id=<?php echo $h['id']; ?>" class="btn btn-sm btn-blue"><i class="fas fa-edit"></i></a>
-                            <a href="delete.php?id=<?php echo $h['id']; ?>" class="btn btn-sm btn-red" onclick="return confirm('Excluir?');"><i class="fas fa-trash"></i></a>
+                            <a href="delete.php?id=<?php echo $h['id']; ?>" class="btn btn-sm btn-red" onclick="return confirmDialog(event, this.href, 'Excluir?');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

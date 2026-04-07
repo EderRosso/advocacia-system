@@ -57,7 +57,7 @@ try {
                                 <a href="<?php echo BASE_URL . htmlspecialchars($d['caminho_arquivo']); ?>" target="_blank" class="btn btn-sm btn-green" title="Visualizar / Baixar Nuvem"><i class="fas fa-cloud-download-alt"></i></a>
                             <?php endif; ?>
                             <a href="form.php?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-blue" title="Editar Ficha"><i class="fas fa-edit"></i></a>
-                            <a href="delete.php?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-red" title="Excluir da Nuvem" onclick="return confirm('ATENÇÃO: Isso apagará a ficha e o arquivo armazenado no servidor permanentemente! Confirmar?');"><i class="fas fa-trash"></i></a>
+                            <a href="delete.php?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-red" title="Excluir da Nuvem" onclick="return confirmDialog(event, this.href, 'ATENÇÃO: Isso apagará a ficha e o arquivo armazenado no servidor permanentemente! Confirmar?');"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

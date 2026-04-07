@@ -51,7 +51,7 @@ try {
                         <td class="btn-actions">
                             <a href="form.php?id=<?php echo $u['id']; ?>" class="btn btn-sm btn-blue"><i class="fas fa-edit"></i></a>
                             <?php if ($u['id'] != $_SESSION['usuario_id']): ?>
-                            <a href="delete.php?id=<?php echo $u['id']; ?>" class="btn btn-sm btn-red" onclick="return confirm('Excluir usuário?');"><i class="fas fa-trash"></i></a>
+                            <a href="delete.php?id=<?php echo $u['id']; ?>" class="btn btn-sm btn-red" onclick="return confirmDialog(event, this.href, 'Excluir usuário?');"><i class="fas fa-trash"></i></a>
                             <?php endif; ?>
                         </td>
                     </tr>
