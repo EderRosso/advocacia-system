@@ -17,6 +17,7 @@ Principais objetivos do sistema:
 * Automatizar fluxos de trabalho
 * Fornecer insights estratégicos (Analytics)
 * Melhorar a comunicação com clientes
+* **Garantir usabilidade Premium:** Modo Noturno (Dark Mode), Design Responsivo, Modais fluídas e Notificações Toasts (SweetAlert2).
 
 ---
 
@@ -65,12 +66,13 @@ Principais objetivos do sistema:
 
 ---
 
-### 💰 Gestão de Honorários
+### 💰 Gestão de Honorários e Orçamentos
 
-* Controle financeiro completo
-* Parcelamento automático com cálculo de vencimentos
-* Alertas de inadimplência
-* Visualização consolidada na dashboard
+* Controle financeiro completo (parcelamentos, baixa automática, alertas)
+* **Módulo SaaS de Propostas Jurídicas**: Geração de contratos em PDF de alta qualidade.
+* Suporte a Dual-Logo (inserção de logotipos dos sócios/advogados na proposta).
+* Editor Rico (CKEditor) para delimitação do escopo de serviços e cláusulas contratuais.
+* Assinaturas configuráveis com nome e registro OAB.
 
 ---
 
@@ -111,17 +113,22 @@ Principais objetivos do sistema:
 * MySQL / MariaDB
 * Modelagem relacional com integridade referencial (FK + CASCADE)
 
-### Frontend
+### Frontend UI/UX Premium ✨
 
-* HTML5
-* CSS3 (Design System próprio)
-* JavaScript (interações dinâmicas)
+* HTML5 Semântico e Responsivo (Mobile First)
+* CSS3 Vanilla com mapeamento de Design System e Variáveis.
+* **Dark Mode Nativo**: Persistência no cache do navegador e transições suaves de 0.3s.
+* **SweetAlert2**: Substituição total de alertas nativos (alert/confirm) por modais assíncronas estilizadas.
+* **Smart Toasts**: Notificações flutuantes com auto-destruição nos retornos nativos do PHP.
+* Micro-animações em dashboards (Efeito Roleta/Conta-Giros Numérico).
 
 ### Recursos adicionais
 
-* PWA (manifest + service worker)
-* FontAwesome (ícones)
+* PWA Real (manifest + service worker + Apple Touch Icon nativo)
+* FontAwesome (ícones vetoriais)
 * SortableJS (Kanban drag-and-drop)
+* CKEditor 5 (Edição rica de documentos contratuais)
+* DOMPdf / TCPdf (Para geração de propostas imprimíveis na nuvem)
 
 ---
 
